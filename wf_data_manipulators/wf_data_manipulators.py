@@ -5,19 +5,12 @@ import numpy as np
 
 class DataManipulators():
     """
-    This class contains methods for file processing, including file dialogs,
-    image viewing, and data loading utilities.
+    This class contains methods for data manipulation, including image processing,
+    CSV handling, and DataFrame operations.
     """
 
-    def __init__(self):
-        """
-        Initialize the FileDataProcessor class.
-        Currently, no initialization logic is required.
-        """
-        pass
-
-
-    def image_to_array(self, filepath):
+    @staticmethod
+    def image_to_array(filepath):
         """
         Loads an image file into a numpy array.
 
@@ -38,8 +31,8 @@ class DataManipulators():
         except Exception as e:
             raise RuntimeError(f"an error occurred while reading the image: {e}")
 
-
-    def csv_to_dataframe(self, filepath):
+    @staticmethod
+    def csv_to_dataframe(filepath):
         """
         Loads a CSV file into a pandas DataFrame.
 
@@ -58,7 +51,7 @@ class DataManipulators():
         except Exception as e:
             raise RuntimeError(f"An error occurred while reading the csv: {e}")
         
-        
+    @staticmethod    
     def dicts_to_dataframe(dict_list):
         """
         Converts a list of dictionaries to a pandas DataFrame.
@@ -71,6 +64,9 @@ class DataManipulators():
             
         Returns:
             pd.DataFrame: The resulting DataFrame.
+            
+        Raises:
+            ValueError: If input is not a list of dictionaries.
         """
         if not isinstance(dict_list, list) or not all(isinstance(d, dict) for d in dict_list):
             raise ValueError("Input must be a list of dictionaries.")
@@ -78,19 +74,39 @@ class DataManipulators():
         df = pd.DataFrame(dict_list)
         return df
 
-
-    def remove_keys_from_json(self, data, keys_to_remove):
+    @staticmethod
+    def remove_keys_from_json(data, keys_to_remove):
         """
         Removes specified keys from each dictionary in a list.
 
         Parameters:
-        - data: list of dictionaries (JSON-like)
-        - keys_to_remove: list of keys to be removed from each dictionary
+            data (list): List of dictionaries to modify.
+            keys_to_remove (list): List of keys to be removed from each dictionary.
 
         Returns:
-        - The cleaned list of dictionaries
+            list: The modified list of dictionaries with specified keys removed.
         """
         for item in data:
             for key in keys_to_remove:
                 item.pop(key, None)  # Safely remove key if it exists.
         return data
+
+    @staticmethod
+    def extract_column_as_list(df, column_name):
+        """
+        Extract data from a specified column in a pandas DataFrame and return as a list.
+        
+        Parameters:
+            df (pd.DataFrame): The DataFrame to extract data from.
+            column_name (str): The name of the column to extract.
+        
+        Returns:
+            list: A list containing the values from the specified column.
+
+        Raises:
+            KeyError: If the column name doesn't exist in the DataFrame.
+        """
+        if column_name not in df.columns:
+            raise KeyError(f"Column '{column_name}' not found in DataFrame")
+
+        return df[column_name].tolist()

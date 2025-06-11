@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.5 - 2025-05-11
+- Added "extract_column_as_list" method.
+- Filled out README.md
+
 ## 0.0.4 - 2025-05-11
 - Forgot to version setup.py properly.
 
