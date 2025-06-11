@@ -14,7 +14,7 @@ The `DataManipulators` class contains static utility methods for:
 ## Installation
 
 ```bash
-pip install pandas pillow numpy
+pip install git+https://github.com/westonforbes/wf_data_manipulators.git
 ```
 
 ## Usage
