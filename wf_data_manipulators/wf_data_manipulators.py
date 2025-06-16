@@ -75,7 +75,7 @@ class DataManipulators():
         return df
 
     @staticmethod
-    def remove_keys_from_json(data, keys_to_remove):
+    def delete_keys_in_list_dict(data, keys_to_remove):
         """
         Removes specified keys from each dictionary in a list.
 
@@ -89,6 +89,25 @@ class DataManipulators():
         for item in data:
             for key in keys_to_remove:
                 item.pop(key, None)  # Safely remove key if it exists.
+        return data
+    
+    @staticmethod
+    def keep_keys_in_list_dict(data, keys_to_keep):
+        """
+        Keeps only the specified keys in each dictionary in a list,
+        removing all other keys.
+
+        Parameters:
+            data (list): List of dictionaries to modify.
+            keys_to_keep (list): List of keys to retain in each dictionary.
+
+        Returns:
+            list: The modified list of dictionaries with only specified keys retained.
+        """
+        for item in data:
+            keys_to_delete = set(item.keys()) - set(keys_to_keep)
+            for key in keys_to_delete:
+                item.pop(key, None)  # Safely remove keys not in the keep list
         return data
 
     @staticmethod

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7 - 2025-05-16
+- Added keep_keys_in_list_dict() which is the logical opposite of remove_keys_from_json(), you pass a list of dicts (like seen in Plex API return data) and what you want to keep, it pitches the rest.
+- renamed remove_keys_from_json() to delete_keys_in_list_dict().
+
 ## 0.0.6 - 2025-05-11
 - Cleaned up typo in readme, no code difference.
 

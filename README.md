@@ -96,7 +96,7 @@ print(df)
 
 ---
 
-### `remove_keys_from_json(data, keys_to_remove)`
+### `delete_keys_in_list_dict(data, keys_to_remove)`
 
 Removes specified keys from each dictionary in a list.
 
@@ -112,6 +112,26 @@ Removes specified keys from each dictionary in a list.
 data = [{"name": "John", "age": 30, "temp_id": 123}]
 cleaned = DataManipulators.remove_keys_from_json(data, ["temp_id"])
 # Result: [{"name": "John", "age": 30}]
+```
+
+---
+
+### `keep_keys_in_list_dict(data, keys_to_keep)`
+
+Keeps specified keys from each dictionary in a list, pitches the rest.
+
+**Parameters:**
+- `data` (list): List of dictionaries to modify
+- `keys_to_keep` (list): List of keys to be kept from each dictionary
+
+**Returns:**
+- `list`: The modified list of dictionaries with specified keys kept
+
+**Example:**
+```python
+data = [{"name": "John", "age": 30, "temp_id": 123}]
+cleaned = DataManipulators.keep_keys_in_list_dict(data, ["temp_id"])
+# Result: [{"temp_id": 123}]
 ```
 
 ---
