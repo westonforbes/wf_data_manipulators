@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='wf_data_manipulators',
-    version='0.0.7',
+    version='0.0.8',
     packages=find_packages(),
     install_requires=[
         'wf_console @ git+https://github.com/westonforbes/wf_console.git',

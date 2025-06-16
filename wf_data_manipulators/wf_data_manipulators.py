@@ -86,10 +86,11 @@ class DataManipulators():
         Returns:
             list: The modified list of dictionaries with specified keys removed.
         """
+        result = []
         for item in data:
-            for key in keys_to_remove:
-                item.pop(key, None)  # Safely remove key if it exists.
-        return data
+            new_item = {k: v for k, v in item.items() if k not in keys_to_remove}
+            result.append(new_item)
+        return result
     
     @staticmethod
     def keep_keys_in_list_dict(data, keys_to_keep):
@@ -104,11 +105,11 @@ class DataManipulators():
         Returns:
             list: The modified list of dictionaries with only specified keys retained.
         """
+        result = []
         for item in data:
-            keys_to_delete = set(item.keys()) - set(keys_to_keep)
-            for key in keys_to_delete:
-                item.pop(key, None)  # Safely remove keys not in the keep list
-        return data
+            new_item = {k: v for k, v in item.items() if k in keys_to_keep}
+            result.append(new_item)
+        return result
 
     @staticmethod
     def extract_column_as_list(df, column_name):
